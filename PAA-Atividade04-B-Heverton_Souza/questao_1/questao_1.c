@@ -1,17 +1,17 @@
 #include <stdio.h>
-#include <limits.h>  // para INT_MAX e INT_MIN
 
 // Função (d): mínimo da soma das colunas
 int min_soma_colunas(int n, int m, int A[n][m]) {
-    int min = INT_MAX;
+    int min = 9999999;
 
     for (int j = 0; j < m; j++) {
         int soma = 0;
         for (int i = 0; i < n; i++) {
             soma += A[i][j];
         }
-        if (soma < min)
+        if (soma < min){
             min = soma;
+        }
     }
 
     return min;
@@ -19,15 +19,16 @@ int min_soma_colunas(int n, int m, int A[n][m]) {
 
 // Função (e): máximo do produto das linhas
 int max_prod_linhas(int n, int m, int B[n][m]) {
-    int max = INT_MIN;
+    int max = -9999999;
 
-    for (int i = 0; i < n; i++) {
-        int prod = 1;
-        for (int j = 0; j < m; j++) {
-            prod *= B[i][j];
+    for (int i = 0; i < n; i++) {           
+        int prod = 1;                     
+        for (int j = 0; j < m; j++) {       
+            prod *= B[i][j];                
         }
-        if (prod > max)
-            max = prod;
+        if (prod > max){                  
+            max = prod;                  
+        }
     }
 
     return max;
@@ -37,9 +38,11 @@ int max_prod_linhas(int n, int m, int B[n][m]) {
 int soma_acima_diagonal(int n, int C[n][n]) {
     int soma = 0;
 
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            soma += C[i][j];
+    for (int i = 0; i < n; i++) {          //n+1
+        for (int j = 0; j < n; j++) {      //n*(n+1)
+            if(i < j){                     //n*n
+                soma += C[i][j];           //n*n
+            }
         }
     }
 
@@ -62,12 +65,12 @@ int main() {
     int n, m;
 
     while (1) {
-        printf("\nEscolha a função para executar:\n");
-        printf("d - Mínimo da soma das colunas\n");
-        printf("e - Máximo do produto das linhas\n");
+        printf("\nEscolha a funcao para executar:\n");
+        printf("d - Minimo da soma das colunas\n");
+        printf("e - Maximo do produto das linhas\n");
         printf("f - Soma acima da diagonal principal\n");
         printf("q - Sair\n");
-        printf("Opção: ");
+        printf("Opcao: ");
         scanf(" %c", &opcao);
 
         if (opcao == 'q' || opcao == 'Q') {
@@ -77,10 +80,10 @@ int main() {
 
         switch (opcao) {
             case 'd': case 'D': {
-                printf("\n--- Mínimo da soma das colunas ---\n");
-                printf("Digite o número de linhas (n): ");
+                printf("\n--- Minimo da soma das colunas ---\n");
+                printf("Digite o numero de linhas (n): ");
                 scanf("%d", &n);
-                printf("Digite o número de colunas (m): ");
+                printf("Digite o numero de colunas (m): ");
                 scanf("%d", &m);
 
                 int A[n][m];
@@ -92,10 +95,10 @@ int main() {
             }
 
             case 'e': case 'E': {
-                printf("\n--- Máximo do produto das linhas ---\n");
-                printf("Digite o número de linhas (n): ");
+                printf("\n--- Maximo do produto das linhas ---\n");
+                printf("Digite o numero de linhas (n): ");
                 scanf("%d", &n);
-                printf("Digite o número de colunas (m): ");
+                printf("Digite o numero de colunas (m): ");
                 scanf("%d", &m);
 
                 int B[n][m];
@@ -120,7 +123,7 @@ int main() {
             }
 
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente.\n");
         }
     }
 
